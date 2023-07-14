@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_provider/app/widgets/todo_list_logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
@@ -16,12 +17,50 @@ class LoginPage extends StatelessWidget {
                 minHeight: constraints.maxHeight,
                 minWidth: constraints.maxWidth,
               ),
-              child: const IntrinsicHeight(
+              child: IntrinsicHeight(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
+                    ),
+                    const TodoListLogo(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 40,
+                        vertical: 20,
+                      ),
+                      child: Form(
+                        child: Column(
+                          children: [
+                            TextFormField(),
+                            const SizedBox(height: 20),
+                            TextFormField(),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButton(
+                                  onPressed: () {},
+                                  child: const Text('Esqueceu a sua senha?'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Text('Login'),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
