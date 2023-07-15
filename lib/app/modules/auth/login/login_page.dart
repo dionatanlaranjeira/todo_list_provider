@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sign_in_button/sign_in_button.dart';
-import 'package:todo_list_provider/app/widgets/todo_list_logo.dart';
+import 'package:todo_list_provider/app/core/widgets/todo_list_field.dart';
+import 'package:todo_list_provider/app/core/widgets/todo_list_logo.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
@@ -34,9 +35,14 @@ class LoginPage extends StatelessWidget {
                       child: Form(
                         child: Column(
                           children: [
-                            TextFormField(),
+                             TodoListField(
+                              label: 'E-mail',
+                            ),
                             const SizedBox(height: 20),
-                            TextFormField(),
+                             TodoListField(
+                              label: 'Senha',
+                              obscureText: true,
+                            ),
                             const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,10 +95,15 @@ class LoginPage extends StatelessWidget {
                                 borderSide: BorderSide.none),
                             onPressed: () {},
                           ),
-                          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            const Text('Não tem conta?'),
-                            TextButton(onPressed: (){}, child: const Text('Registre-se'))
-                          ],)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('Não tem conta?'),
+                              TextButton(
+                                  onPressed: () {},
+                                  child: const Text('Registre-se'))
+                            ],
+                          )
                         ],
                       ),
                     ))
