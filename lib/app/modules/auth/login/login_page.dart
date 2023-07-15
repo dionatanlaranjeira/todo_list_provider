@@ -35,11 +35,11 @@ class LoginPage extends StatelessWidget {
                       child: Form(
                         child: Column(
                           children: [
-                             TodoListField(
+                            TodoListField(
                               label: 'E-mail',
                             ),
                             const SizedBox(height: 20),
-                             TodoListField(
+                            TodoListField(
                               label: 'Senha',
                               obscureText: true,
                             ),
