@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
 
+// ignore: must_be_immutable
 class TodoListField extends StatelessWidget {
   final String label;
   final IconButton? suffixIconButton;

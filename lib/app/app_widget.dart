@@ -17,6 +17,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   void initState() {
     super.initState();
+    // ignore: unused_local_variable
     FirebaseAuth auth = FirebaseAuth.instance;
     WidgetsBinding.instance.addObserver(sqliteAdmConnection);
   }

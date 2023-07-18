@@ -15,6 +15,7 @@ class UserRepositoryImpl implements UserRepository {
       final userCredencial = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       return userCredencial.user;
+    // ignore: unused_catch_stack
     } on FirebaseAuthException catch (e, s) {
       log('$e');
       if (e.code == 'email-already-exists') {
