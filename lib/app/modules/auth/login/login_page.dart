@@ -52,11 +52,7 @@ class LoginPage extends StatelessWidget {
                                   child: const Text('Esqueceu a sua senha?'),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                            'home', (_) => false);
-                                  },
+                                  onPressed: () {},
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),

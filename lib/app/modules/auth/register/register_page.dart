@@ -89,25 +89,35 @@ class _RegisterPageState extends State<RegisterPage> {
                   TodoListField(
                     label: 'E-mail',
                     controller: emailEC,
-                    validator: Validatorless.email('E-mail inválido'),
+                    validatorList: [
+                      Validatorless.required('E-mail obrigatório'),
+                      Validatorless.email('E-mail inválido'),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   TodoListField(
                     label: 'Senha',
-                    validator: Validatorless.min(
-                        6, 'Senha deve ter pelo menos 6 caracteres'),
                     controller: passwordEC,
                     obscureText: true,
+                    validatorList: [
+                      Validatorless.required('Senha obrigatória'),
+                      Validatorless.min(
+                          6, 'A senha deve conter no mínimo 6 caracteres'),
+                    ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   TodoListField(
                     label: 'Confirmar senha',
-                    validator: Validatorless.required('Senha obrigatória'),
                     controller: confirmPasswordEC,
+                    validatorList: [
+                      Validatorless.required('Senha obrigatória'),
+                      Validatorless.min(
+                          6, 'A senha deve conter no mínimo 6 caracteres'),
+                    ],
                     obscureText: true,
                   ),
                   const SizedBox(
@@ -116,7 +126,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {}
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
