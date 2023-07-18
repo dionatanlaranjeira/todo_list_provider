@@ -71,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
         key: _formKey,
         child: ListView(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.width * .5,
               child: const FittedBox(
                 fit: BoxFit.fitHeight,
