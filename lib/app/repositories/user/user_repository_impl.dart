@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_list_provider/app/exception/auth_exception.dart';
-
 import './user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
@@ -19,8 +17,7 @@ class UserRepositoryImpl implements UserRepository {
       return userCredencial.user;
     } on FirebaseAuthException catch (e, s) {
       log('$e');
-      print('$s');
-      if (e.code == 'email-already-in-use') {
+      if (e.code == 'email-already-exists') {
         final loginTypes =
             await _firebaseAuth.fetchSignInMethodsForEmail(email);
         if (loginTypes.contains('password')) {

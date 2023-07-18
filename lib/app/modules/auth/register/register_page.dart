@@ -2,9 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/theme_extensions.dart';
 import 'package:todo_list_provider/app/core/widgets/todo_list_field.dart';
 import 'package:todo_list_provider/app/core/widgets/todo_list_logo.dart';
+import 'package:validatorless/validatorless.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+  final emailEC = TextEditingController();
+  final passwordEC = TextEditingController();
+  final confirmPasswordEC = TextEditingController();
+
+  @override
+  void dispose() {
+    emailEC.dispose();
+    passwordEC.dispose();
+    confirmPasswordEC.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,60 +67,72 @@ class RegisterPage extends StatelessWidget {
           },
         ),
       ),
-      body: ListView(
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.width * .5,
-            child: const FittedBox(
-              fit: BoxFit.fitHeight,
-              child: TodoListLogo(),
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.width * .5,
+              child: const FittedBox(
+                fit: BoxFit.fitHeight,
+                child: TodoListLogo(),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 40,
-              vertical: 20,
-            ),
-            child: Form(
-                child: Column(
-              children: [
-                TodoListField(label: 'E-mail'),
-                const SizedBox(
-                  height: 20,
-                ),
-                TodoListField(
-                  label: 'Senha',
-                  obscureText: true,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TodoListField(
-                  label: 'Confirmar senha',
-                  obscureText: true,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 20,
+              ),
+              child: Form(
+                  child: Column(
+                children: [
+                  TodoListField(
+                    label: 'E-mail',
+                    controller: emailEC,
+                    validator: Validatorless.email('E-mail inválido'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TodoListField(
+                    label: 'Senha',
+                    validator: Validatorless.min(
+                        6, 'Senha deve ter pelo menos 6 caracteres'),
+                    controller: passwordEC,
+                    obscureText: true,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TodoListField(
+                    label: 'Confirmar senha',
+                    validator: Validatorless.required('Senha obrigatória'),
+                    controller: confirmPasswordEC,
+                    obscureText: true,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text('Salvar'),
                       ),
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Text('Salvar'),
-                    ),
                   ),
-                ),
-              ],
-            )),
-          )
-        ],
+                ],
+              )),
+            )
+          ],
+        ),
       ),
     );
   }
