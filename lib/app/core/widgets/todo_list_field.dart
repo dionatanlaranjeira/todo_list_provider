@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_provider/app/core/ui/todo_list_icons.dart';
-import 'package:validatorless/validatorless.dart';
 
 // ignore: must_be_immutable
 class TodoListField extends StatelessWidget {
@@ -9,7 +8,7 @@ class TodoListField extends StatelessWidget {
   final bool obscureText;
   final ValueNotifier<bool> obscureTextVN;
   final TextEditingController? controller;
-  final List<FormFieldValidator<String>>? validatorList;
+  final FormFieldValidator<String>? validator;
 
   TodoListField({
     Key? key,
@@ -17,7 +16,7 @@ class TodoListField extends StatelessWidget {
     this.suffixIconButton,
     this.controller,
     this.obscureText = false,
-    this.validatorList,
+    this.validator,
   })  : assert(obscureText == true ? suffixIconButton == null : true,
             'obscureText não pode ser enviado em conjunto com suffixIconButton'),
         obscureTextVN = ValueNotifier(obscureText),
@@ -58,9 +57,7 @@ class TodoListField extends StatelessWidget {
                     : null),
           ),
           obscureText: obscureTextValue,
-          validator: validatorList != null
-              ? Validatorless.multiple(validatorList!)
-              : null,
+          validator: validator
         );
       },
     );
